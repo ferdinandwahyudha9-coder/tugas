@@ -23,14 +23,25 @@ header {
   box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 header h1 { font-size:1.8rem; font-weight:700; letter-spacing:1px; }
-nav { display:flex; align-items:center; gap:25px; }
+nav { display:flex; align-items:center; gap:25px; flex-wrap:wrap; }
 nav a { font-weight:500; transition:0.3s; }
 nav a:hover { color:#555; }
 
+/* Bagian kanan header */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 /* Search box */
-.search-box { position:relative; }
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 .search-box input {
-  padding:8px 30px 8px 12px;
+  padding:8px 35px 8px 12px;
   border:1px solid #ddd;
   border-radius:6px;
   font-size:0.9rem;
@@ -39,14 +50,25 @@ nav a:hover { color:#555; }
 .search-box input:focus { outline:none; border-color:#aaa; }
 .search-box img {
   position:absolute;
-  right:8px;
-  top:7px;
+  right:10px;
   width:18px; height:18px;
   opacity:0.7;
   pointer-events:none;
 }
-.icon-btn { background:transparent; border:none; cursor:pointer; }
-.icon-btn img { width:26px; height:26px; transition:transform 0.3s ease; }
+
+/* Icon keranjang */
+.icon-btn {
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+}
+.icon-btn img {
+  width:26px;
+  height:26px;
+  transition:transform 0.3s ease;
+}
 .icon-btn:hover img { transform:scale(1.1); }
 
 /* Hero Section dengan background slideshow */
@@ -163,14 +185,28 @@ footer { background:#fff; color:#555; text-align:center; padding:30px 20px; bord
 footer a { color:#111; margin:0 10px; font-weight:500; }
 footer a:hover { color:#555; }
 
+/* Responsive */
 @media(max-width:768px){
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+  nav {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .nav-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .search-box { flex: 1; }
+  .search-box input { width: 100%; }
   .hero h2 { font-size:2rem; }
   .hero p { font-size:1rem; }
   .produk-card img { height:300px; }
 }
-
-/* Floating animation */
-@keyframes float { 0%{ transform:translateY(0);} 100%{ transform:translateY(-15px); } }
 </style>
 </head>
 <body>
@@ -183,14 +219,15 @@ footer a:hover { color:#555; }
     <a href="#profile">Profil</a>
     <a href="#contact">Kontak</a>
 
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Cari produk...">
-      <img src="images/download.jpg" alt="Cari">
+    <div class="nav-right">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Cari produk...">
+        <img src="images/download.jpg" alt="Cari">
+      </div>
+      <button class="icon-btn" onclick="window.location.href='keranjang.html'">
+        <img src="images/keranjang.jpg" alt="Keranjang">
+      </button>
     </div>
-
-    <button class="icon-btn" onclick="window.location.href='keranjang.html'">
-      <img src="images/keranjang.jpg" alt="Keranjang">
-    </button>
   </nav>
 </header>
 
@@ -238,13 +275,13 @@ footer a:hover { color:#555; }
   </p>
 </section>
 
+<!-- Contact Section -->
 <section class="contact" id="contact">
   <h2>Hubungi Kami</h2>
   <p>Email: <a href="mailto:nandsecond@gmail.com">nandsecond@gmail.com</a></p>
   <p>Instagram: <a href="https://instagram.com/nandsecond" target="_blank">@nandsecond</a></p>
   <p>WhatsApp: <a href="https://wa.me/628123456789" target="_blank">+62 812-3456-789</a></p>
 
-  <!-- Formspree Form -->
   <form action="https://formspree.io/f/xpwogbqk" method="POST" style="max-width:500px; margin:30px auto; display:flex; flex-direction:column; gap:15px;">
     <input type="text" name="name" placeholder="Nama Anda" required style="padding:10px; border-radius:6px; border:1px solid #ccc;">
     <input type="email" name="email" placeholder="Email Anda" required style="padding:10px; border-radius:6px; border:1px solid #ccc;">
@@ -252,7 +289,6 @@ footer a:hover { color:#555; }
     <button type="submit" style="padding:12px; background:#111; color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Kirim Pesan</button>
   </form>
 </section>
-
 
 <!-- Footer -->
 <footer>
@@ -300,3 +336,4 @@ searchInput.addEventListener('keypress', (e) => {
 
 </body>
 </html>
+  
